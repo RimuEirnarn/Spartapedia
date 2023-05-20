@@ -29,7 +29,7 @@ def movie_post():
     try:
         movie = get_data(movie_url)
     except Exception as exc:
-        return jsonify({"status": 'error', 'message': str(exc)})
+        return jsonify({"status": 'error', 'message': str(exc)}), 400
     spartapedia.insert_one({
         'movieData': {
             'title': movie.title,
