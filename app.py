@@ -39,7 +39,7 @@ def movie_post():
         'rating': rating,
         'comment': comment
     })
-    return jsonify({'status': 'success', 'message': "Post success"})
+    return jsonify({'status': 'success', 'message': "Post success", "data": {'movie': {"title": movie.title, "desc": movie.desc, "image": movie.image}, "rating": rating, "comment": comment}})
 
 
 @app.route("/movie", methods=["GET"])

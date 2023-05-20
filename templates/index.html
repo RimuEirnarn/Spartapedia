@@ -108,7 +108,7 @@
                     type: 'GET',
                     url: '/movie',
                     success: function (response) {
-                        console.log(response['request'])
+			console.log(`${response.status} -> listed`)
                         for (const data of response['request']) {
                             push(data.movieData, data.rating, data.comment)
                         }
@@ -173,8 +173,9 @@
                     url: '/movie',
                     data: post(),
                     success: function (response) {
-                        console.log(response['message'])
-                        window.location.reload()
+                        console.log(`${response.status} -> ${response['message']}`)
+                        let data = response['data']
+                        push(data.movie, data.rating, data.comment)
                     }
                 });
             }
