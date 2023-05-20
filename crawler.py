@@ -1,4 +1,5 @@
 from typing import NamedTuple
+from urllib.parse import urlparse
 import requests
 from bs4 import BeautifulSoup
 
@@ -25,6 +26,9 @@ def get_data(url):
     og_description = soup.select_one('meta[property="og:description"]')
 
     image = og_image['content']
+    if image[0] == '/':
+        parsed_url = urlparse(url)
+        image = f"{parsed_url.scheme}://{parsed_url.netloc}{image}"
     title = og_title['content']
     desc = og_description['content']
 
